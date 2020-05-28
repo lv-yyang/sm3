@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名 -->
+<mapper namespace="com.ly.mapper.BookMap">
+
+	<!-- 根据id查询人员信息 
+		#{}标识占位符 
+		#{参数名称}:若输入映射类型是基本类型，那么参数名称可以是value或其他任意
+		parameterType:输入映射,即对sql语句中的参数进行类型映射
+		resultType:输出映射，即对查询结果集单条记录转换为pojo对象进行映射 -->
+	<select id="queryBookById" parameterType="int" resultType="com.ly.pojo.Book">
+	select * from book where id=#{id}
+	</select>
+
+	<select id="queryBookAll" resultType="com.ly.pojo.Book">
+	select * from book
+	</select>
+	
+	<insert id="addbook" parameterType="com.ly.pojo.Book">
+	
+	insert into book(name,price,leixing,zuozhe) values(#{name},#{price},#{leixing},#{zuozhe})
+	</insert>
+	<!-- public int deletebook(int id); -->
+	<delete id="" parameterType="int">
+	delete from book where id=#{id}
+	</delete>
+
+	<update id="updatebook" parameterType="com.ly.pojo.Book">
+	update book set name=#{name},price=#{price},leixing=#{leixing},zuozhe=#{zuozhe} where id=#{id}
+	</update>
+
+</mapper>
